@@ -3,6 +3,7 @@ import alMumithMejor from "@/assets/team/al-mumith-mejor.jpg";
 import akibRahman from "@/assets/team/akib-rahman.jpg";
 import arafathHasan from "@/assets/team/arafath-hasan.jpg";
 import subarnaMostafa from "@/assets/team/subarna-mostafa.jpg";
+import shalinurIslam from "@/assets/team-member-6.jpg";
 
 const team = [
   { name: "Nazmus Sakib", role: "Founder & CEO", photo: nazmusSakib },
@@ -10,7 +11,7 @@ const team = [
   { name: "Akib Rahman", role: "CO-Founder & Creative Director", photo: akibRahman },
   { name: "Arafath Hasan", role: "CO-Founder & logistics Director", photo: arafathHasan },
   { name: "Subarna Mostafa", role: "General Manager", photo: subarnaMostafa },
-  { name: "Shalinur Islam", role: "Director of Marketing", photo: null as string | null },
+  { name: "Shalinur Islam", role: "Director of Marketing", photo: shalinurIslam as string | null },
 ];
 
 const TeamSection = () => {
