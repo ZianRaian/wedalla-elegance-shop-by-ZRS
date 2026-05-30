@@ -70,7 +70,7 @@ const ContactSection = () => {
             {[
               { icon: Mail, label: "hellowedalla@gmail.com" },
               { icon: Phone, label: "+8801401983744" },
-              { icon: MapPin, label: "50 Outer Bypass Rd, Khulna 9000, Khulna,\nBangladesh, 9000" },
+              { icon: MapPin, label: "209 2nd faze , Khulna 9100, Khulna,\nBangladesh, 9100" },
             ].map((item) => (
               <div key={item.label} className="glass-card glass-card-hover p-6 flex items-center gap-5 transition-all duration-300 hover:scale-[1.02]">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
