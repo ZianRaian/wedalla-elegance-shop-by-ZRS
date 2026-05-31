@@ -27,7 +27,32 @@ The production files are generated in `dist/`.
 
 ## cPanel Static Deployment
 
-Run `npm run build`, then upload the contents of `dist/` to the target cPanel public web directory, such as `public_html`.
+For first setup, install dependencies:
+
+```sh
+npm install
+```
+
+Build the static production files:
+
+```sh
+npm run build
+```
+
+Upload the contents of `dist/` to the target cPanel document root, such as
+`public_html` or the document root for an addon domain.
+
+Do not upload `src/`, `node_modules/`, package files, or the `dist/` folder
+itself. Upload only the files and folders inside `dist/`.
+
+`public/.htaccess` is copied into `dist/.htaccess` during the Vite build. This
+allows Apache/cPanel to serve real files normally while routing unknown paths to
+`index.html` for React Router `BrowserRouter` refreshes and direct links.
+
+This app is safest when deployed at the domain root. Deploying under a
+subdirectory requires Vite `base` config changes before building.
+
+Backend features and contact form persistence are still not implemented.
 
 ## Backend Status
 
