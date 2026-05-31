@@ -1,8 +1,26 @@
 import { Mail, Phone, MapPin } from "lucide-react";
+import type { FormEvent } from "react";
 import { useState } from "react";
 
 const ContactSection = () => {
-  const [submitted, setSubmitted] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const subject = "Event Booking Inquiry";
+    const body = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      "",
+      "Message:",
+      message,
+    ].join("\n");
+
+    window.location.href = `mailto:hellowedalla@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
 
   return (
     <section id="contact" className="section-slide">
@@ -19,51 +37,47 @@ const ContactSection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="glass-card p-8 md:p-10">
-            {submitted ? (
-              <div className="text-center py-12">
-                <p className="text-2xl font-display font-bold text-foreground mb-2">Thank You!</p>
-                <p className="text-muted-foreground">We'll get back to you within 24 hours.</p>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <p className="text-sm text-muted-foreground">
+                Submitting opens your email app with the message pre-filled. Please send it from there.
+              </p>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                  required
+                  className="w-full px-5 py-4 rounded-xl bg-muted/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
+                />
               </div>
-            ) : (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSubmitted(true);
-                }}
-                className="space-y-6"
+              <div>
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  required
+                  className="w-full px-5 py-4 rounded-xl bg-muted/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
+                />
+              </div>
+              <div>
+                <textarea
+                  placeholder="Tell us about your dream event..."
+                  rows={4}
+                  value={message}
+                  onChange={(event) => setMessage(event.target.value)}
+                  required
+                  className="w-full px-5 py-4 rounded-xl bg-muted/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors resize-none"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full btn-glow py-4 rounded-full text-primary-foreground font-semibold text-lg block text-center"
               >
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    required
-                    className="w-full px-5 py-4 rounded-xl bg-muted/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
-                  />
-                </div>
-                <div>
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    required
-                    className="w-full px-5 py-4 rounded-xl bg-muted/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
-                  />
-                </div>
-                <div>
-                  <textarea
-                    placeholder="Tell us about your dream event..."
-                    rows={4}
-                    required
-                    className="w-full px-5 py-4 rounded-xl bg-muted/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors resize-none"
-                  />
-                </div>
-                <a
-                  href="mailto:hellowedalla@gmail.com?subject=Event%20Booking%20Inquiry"
-                  className="w-full btn-glow py-4 rounded-full text-primary-foreground font-semibold text-lg block text-center"
-                >
-                  Book Your Event Or Service's
-                </a>
-              </form>
-            )}
+                Book Your Event Or Service's
+              </button>
+            </form>
           </div>
 
           <div className="space-y-6 flex flex-col justify-center">
